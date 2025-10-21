@@ -43,3 +43,37 @@ export const Button = styled.button`
   font-weight: 600;
   cursor: pointer;
 `
+
+export const List = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 16px;
+`
+
+export const Item = styled.div`
+  padding: 12px;
+  border-radius: 10px;
+  background: #1f2937;
+  border: 1px solid #374151;
+`
+
+export const ItemTitle = styled.div`
+  font-weight: 600;
+`
+
+export const ItemMeta = styled.div`
+  margin-top: 6px;
+  font-size: 14px;
+  color: #9ca3af;
+`
+
+export const Badge = styled.span`
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 8px;
+  font-size: 12px;
+  border-radius: 999px;
+  background: #374151;
+  color: #e5e7eb;
+`
