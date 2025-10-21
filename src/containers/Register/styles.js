@@ -10,7 +10,7 @@ export const Container = styled.div`
 
 export const Card = styled.div`
   width: 100%;
-  max-width: 360px;
+  max-width: 420px;
   background: #111827;
   padding: 24px;
   border-radius: 12px;
@@ -41,9 +41,9 @@ export const Button = styled.button`
   padding: 10px 12px;
   border: none;
   border-radius: 8px;
-  background: #2563eb;
-  color: #fff;
-  font-weight: 600;
+  background: #10b981;
+  color: #0b1020;
+  font-weight: 700;
   cursor: pointer;
 `
 
