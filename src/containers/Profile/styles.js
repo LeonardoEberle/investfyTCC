@@ -20,10 +20,39 @@ export const Card = styled.div`
 
 export const Title = styled.h1`
   font-size: 22px;
-  margin: 0 0 8px;
+  margin: 0 0 16px;
 `
 
-export const Text = styled.p`
-  margin-top: 8px;
-  color: #9ca3af;
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+`
+
+export const Input = styled.input`
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #374151;
+  background: #1f2937;
+  color: #e5e7eb;
+`
+
+export const Textarea = styled.textarea`
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #374151;
+  background: #1f2937;
+  color: #e5e7eb;
+  min-height: 80px;
+  resize: vertical;
+`
+
+export const Button = styled.button`
+  padding: 10px 12px;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
 `
