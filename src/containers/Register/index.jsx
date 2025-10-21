@@ -24,7 +24,7 @@ export default function Register() {
       return
     }
     console.log('Cadastro:', form)
-    alert('Cadastro realizado (mock).')
+    alert('Cadastro realizado.')
     navigate('/login')
   }
 
@@ -41,7 +41,7 @@ export default function Register() {
           <Button type="submit">Cadastrar</Button>
         </Form>
         <Helper>
-          Já tem conta? <Link to="/login">Entrar</Link>
+          Já possui uma conta? <Link to="/login">Entrar</Link>
         </Helper>
       </Card>
     </Container>

@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { Container, Card, Title, Form, Input, Button, Helper, ErrorText } from './styles'
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export default function Login() {
   const [form, setForm] = useState({ email: '', password: '' })
   const [error, setError] = useState('')
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -19,7 +21,7 @@ export default function Login() {
       return
     }
     console.log('Login:', form)
-    alert('Login realizado (mock).')
+    navigate('/home')
   }
 
   return (
@@ -33,7 +35,7 @@ export default function Login() {
           <Button type="submit">Login</Button>
         </Form>
         <Helper>
-          Não tem conta? <Link to="/register">Cadastre-se</Link>
+          Não possui uma conta ainda? <Link to="/register">Cadastre-se</Link>
         </Helper>
       </Card>
     </Container>
