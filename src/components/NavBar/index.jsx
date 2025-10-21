@@ -6,7 +6,7 @@ export default function NavBar() {
   const navigate = useNavigate()
   return (
     <Bar>
-      <Logo>Investfy</Logo>
+      <Logo onClick={() => navigate('/home')} aria-label="Ir para Home">Investfy</Logo>
       <Actions>
         <Button onClick={() => navigate('/profile')}>Perfil</Button>
         <Button $variant="danger" onClick={() => navigate('/login')}>Sair</Button>

@@ -19,6 +19,7 @@ export const Bar = styled.nav`
 export const Logo = styled.div`
   font-weight: 700;
   letter-spacing: 0.3px;
+  cursor: pointer;
 `
 
 export const Actions = styled.div`
