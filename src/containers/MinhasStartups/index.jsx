@@ -1,7 +1,40 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { PageContainer, PageHeader, PageTitle, PageSubtitle, CTAButton, ExampleSection, StartupCard, StartupTitle, StartupDescription, StartupMeta, Tag, ActionRow, ManageButton, CreateFormCard, VideoBox, DocList, DocItem } from './styles'
-import { Form, Input, Textarea, Button } from '../../components/Auth/AuthStyles'
+
+/*
+  MUDANÇA IMPORTANTE (IMPORTAÇÕES DE ESTILO)
+  Trocamos os imports do formulário de 'AuthStyles' para './styles'
+*/
+import { 
+  PageContainer, 
+  PageHeader, 
+  PageTitle, 
+  PageSubtitle, 
+  CTAButton, 
+  ExampleSection, 
+  StartupCard, 
+  StartupTitle, 
+  StartupDescription, 
+  StartupMeta, 
+  Tag, 
+  ActionRow, 
+  ManageButton, 
+  CreateFormCard, 
+  VideoBox, 
+  DocList, 
+  DocItem,
+  
+  /* Nossos novos estilos de formulário (do styles.js) */
+  Form,
+  Input,
+  Textarea,
+  FormButton
+} from './styles'
+
+/*
+  NÃO importamos mais o formulário do AuthStyles
+*/
+// import { Form, Input, Textarea, Button } from '../../components/Auth/AuthStyles'
 
 export default function MinhasStartups() {
   const navigate = useNavigate()
@@ -30,7 +63,13 @@ export default function MinhasStartups() {
         <PageTitle>Minhas startups</PageTitle>
         <PageSubtitle>Gerencie suas startups favoritas e investimentos.</PageSubtitle>
       </PageHeader>
-      <CTAButton onClick={() => setShowCreate((v) => !v)}>Criar nova startup</CTAButton>
+      
+      {/* Este botão (CTAButton) não está dentro do formulário e usa
+        o estilo 'CTAButton' de ./styles
+      */}
+      <CTAButton onClick={() => setShowCreate((v) => !v)}>
+        {showCreate ? 'Cancelar Criação' : 'Criar nova startup'}
+      </CTAButton>
 
       {showCreate && (
         <CreateFormCard>
@@ -59,7 +98,7 @@ export default function MinhasStartups() {
                   </video>
                 )
               ) : (
-                <span>Sem vídeo</span>
+                <span>Arraste um vídeo ou cole a URL</span>
               )}
             </VideoBox>
             <Input type="file" multiple onChange={handleCreateDocs} accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx" />
@@ -71,7 +110,13 @@ export default function MinhasStartups() {
                 </DocItem>
               ))}
             </DocList>
-            <Button type="submit">Salvar nova startup</Button>
+            
+            {/*
+              MUDANÇA IMPORTANTE (O BOTÃO)
+              Usamos o 'FormButton' que importamos de ./styles
+            */}
+            <FormButton type="submit">Salvar nova startup</FormButton>
+          
           </Form>
         </CreateFormCard>
       )}
