@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import {
   DashboardContainer, 
   Header, 
@@ -29,61 +30,17 @@ import {
   HiOutlineChartPie,
   HiOutlineLightBulb 
 } from 'react-icons/hi'
+import { startups } from '../../data/startups'
 
 const Home = () => {
-  const investimentos = [
-    {
-      titulo: 'Tesouro IPCA+ 2029',
-      categoria: 'Renda Fixa',
-      risco: 'Baixo',
-      retorno: 'IPCA + 5.5% a.a.',
-      descricao: 'Proteja seu capital da inflação com rentabilidade real garantida pelo governo.'
-    },
-    {
-      titulo: 'ETF de S&P 500 (IVVB11)',
-      categoria: 'ETF Global',
-      risco: 'Médio',
-      retorno: 'Dolarizado',
-      descricao: 'Invista nas 500 maiores empresas dos EUA com um único ativo negociado na B3.'
-    },
-    {
-      titulo: 'FII de Tijolo Híbrido',
-      categoria: 'FIIs',
-      risco: 'Médio',
-      retorno: 'Dividendos Mensais',
-      descricao: 'Receba aluguéis de um portfólio diversificado de imóveis (lajes, galpões).'
-    },
-    {
-      titulo: 'Ações de Dividendos (Brasil)',
-      categoria: 'Ações BR',
-      risco: 'Médio',
-      retorno: 'Dividend Yield',
-      descricao: 'Foque em empresas sólidas, boas pagadoras de dividendos, para renda passiva.'
-    },
-    {
-      titulo: 'BDRs de Tech (Ex: Apple, Google)',
-      categoria: 'Ações Globais',
-      risco: 'Alto',
-      retorno: 'Crescimento/Dólar',
-       descricao: 'Acesse gigantes da tecnologia mundial através da bolsa brasileira.'
-    },
-     {
-      titulo: 'CDB Pós-Fixado (Liquidez Diária)',
-      categoria: 'Renda Fixa',
-      risco: 'Baixo',
-      retorno: '>100% CDI',
-      descricao: 'Ideal para reserva de emergência, com rendimento diário e segurança bancária.'
-    },
-  ]
-
-  const heroItem = investimentos[0]
-  const otherInvestimentos = investimentos.slice(1)
+  const heroItem = startups[0]
+  const outrasStartups = startups.slice(1)
 
   return (
     <DashboardContainer> 
       <Header>
-        <PageTitle>Dashboard de Oportunidades</PageTitle>
-        <PageSubtitle>Descubra e analise ideias de investimento selecionadas e da comunidade.</PageSubtitle>
+        <PageTitle>Startups em destaque</PageTitle>
+        <PageSubtitle>Descubra e analise startups selecionadas e da comunidade.</PageSubtitle>
       </Header>
 
       <HeroSection>
@@ -92,9 +49,9 @@ const Home = () => {
             <HiOutlineLightBulb size={80} /> 
           </HeroImagePlaceholder>
           <HeroContent>
-            <HeroTitle>{heroItem.titulo}</HeroTitle>
+            <HeroTitle>{heroItem.nome}</HeroTitle>
             <HeroText>
-              {heroItem.descricao} {/* Descrição mais detalhada */}
+              {heroItem.descricao}
             </HeroText>
             <HeroMeta>
               <MetaItem>
@@ -109,16 +66,16 @@ const Home = () => {
               </MetaItem>
               <MetaItem>
                 <HiOutlineTrendingUp size={20} />
-                <span>Retorno</span>
-                <strong>{heroItem.retorno}</strong>
+                <span>Fase</span>
+                <strong>{heroItem.fase}</strong>
               </MetaItem>
             </HeroMeta>
             <Button
-              type="button"
-              onClick={() => alert('Em breve: detalhes do investimento.')}
-              aria-label={`Saiba mais sobre ${heroItem.titulo}`}
+              as={Link}
+              to={`/startups/${heroItem.id}`}
+              aria-label={`Saiba mais sobre ${heroItem.nome}`}
             >
-              <span>Analisar Oportunidade</span>
+              <span>Ver detalhes</span>
               <HiOutlineArrowRight size={20} />
             </Button>
           </HeroContent>
@@ -126,16 +83,16 @@ const Home = () => {
       </HeroSection>
 
       <Section>
-        <SectionTitle>Explorar Mais Investimentos</SectionTitle>
+        <SectionTitle>Explorar mais startups</SectionTitle>
         <HorizontalScroll>
-          {otherInvestimentos.map((item, idx) => (
-            <ItemCard key={idx}>
+          {outrasStartups.map((item, idx) => (
+            <ItemCard key={idx} as={Link} to={`/startups/${item.id}`} aria-label={item.nome}>
               <div>
                 <ItemMeta>
                   <HiOutlineTag size={16} />
                   <span>{item.categoria}</span>
                 </ItemMeta>
-                <ItemTitle>{item.titulo}</ItemTitle>
+                <ItemTitle>{item.nome}</ItemTitle>
               </div>
               <ItemMeta>
                 <HiOutlineShieldCheck size={16} />

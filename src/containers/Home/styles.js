@@ -61,6 +61,7 @@ export const HeroCard = styled.div`
     opacity: 0;
     transition: opacity 0.5s ease, transform 0.5s ease;
     transform: scale(0.6);
+    pointer-events: none;
   }
 
   &:hover {
@@ -234,6 +235,7 @@ export const ItemCard = styled.div`
   position: relative;
   overflow: hidden;
   box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  cursor: pointer;
 
   &::before { 
     content: '';
