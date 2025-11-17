@@ -1,12 +1,16 @@
 import React, { useState } from 'react'
-import {
-  Card,
-  Title,
-  Form,
-  Input,
-  Textarea,
-  Button,
-} from '../../components/Auth/AuthStyles'
+
+/* MUDANÇA 1: Remover importações do AuthStyles */
+// import {
+//   Card,
+//   Title,
+//   Form,
+//   Input,
+//   Textarea,
+//   Button,
+// } from '../../components/Auth/AuthStyles' 
+
+/* MUDANÇA 2: Importar TODOS os estilos (incluindo Form) do ./styles */
 import { 
   ProfileContainer, 
   InfoCard, 
@@ -20,7 +24,13 @@ import {
   InfoItem,
   InfoLabel, 
   InfoValue, 
-  BioText
+  BioText,
+  FormCard,     // <-- Novo
+  FormTitle,    // <-- Novo
+  Form,         // <-- Novo
+  Input,        // <-- Novo
+  Textarea,     // <-- Novo
+  FormButton    // <-- Novo
 } from './styles' 
 import { HiOutlineUser, HiOutlineMail, HiOutlineCalendar, HiOutlineLocationMarker, HiOutlinePhone, HiOutlineInformationCircle, HiOutlineIdentification, HiOutlineDocumentText } from 'react-icons/hi' 
 
@@ -36,6 +46,7 @@ export default function Profile() {
     rg: '00.000.000-0'
   })
 
+  // (Estes dados são estáticos, vamos mantê-los)
   const profileData = {
     name: "Nome Sobrenome",
     email: "usuario@email.com",
@@ -47,6 +58,7 @@ export default function Profile() {
     rg: "XX.XXX.XXX-X"     
   }
 
+  /* ... (as funções de formatação e handleChange permanecem iguais) ... */
   const formatDateDDMMYYYY = (value) => {
     const digits = value.replace(/\D/g, '').slice(0, 8)
     const dd = digits.slice(0, 2)
@@ -89,11 +101,14 @@ export default function Profile() {
     console.log('Editar perfil:', form)
     alert('Dados do perfil (simulado) atualizados.') 
   }
+  /* ... (fim das funções) ... */
+
 
   return (
     <ProfileContainer> 
       
-      <InfoCard style={{ flex: 1.2 }}> 
+      {/* MUDANÇA 3: O InfoCard agora tem fundo cinza claro */}
+      <InfoCard> 
         <InfoHeader>
           <AvatarPlaceholder>
              <HiOutlineUser size={32} /> 
@@ -151,8 +166,9 @@ export default function Profile() {
         </InfoSection>
       </InfoCard>
 
-      <Card style={{ flex: 1 }}> 
-        <Title>Editar Informações</Title> 
+      {/* MUDANÇA 4: Usando o novo <FormCard> e <FormButton> */}
+      <FormCard> 
+        <FormTitle>Editar Informações</FormTitle> 
         <Form onSubmit={handleSubmit}> 
           <Input 
             type="text" name="nome" placeholder="Nome" 
@@ -189,9 +205,9 @@ export default function Profile() {
             value={form.rg} onChange={handleChange} inputMode="text" autoComplete="off" 
              maxLength="12"
           />
-          <Button type="submit">Salvar Alterações</Button> 
+          <FormButton type="submit">Salvar Alterações</FormButton> 
         </Form>
-      </Card>
+      </FormCard>
 
     </ProfileContainer>
   )
