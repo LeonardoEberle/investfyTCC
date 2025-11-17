@@ -1,5 +1,23 @@
 import styled from 'styled-components'
 
+/* Definindo a paleta de cores do TEMA CLARO 
+  para consistência
+*/
+const colors = {
+  text: '#1a202c',
+  textMuted: '#5a6472',
+  primary: '#3b82f6',
+  danger: '#ef4444',
+  bg: '#ffffff',
+  bgMuted: '#f9fafb',
+  border: '#e5e7eb',
+  primaryBg: 'rgba(59, 130, 246, 0.1)', // Fundo azul bem claro
+  dangerBg: 'rgba(239, 68, 68, 0.1)' // Fundo vermelho bem claro
+}
+
+/* BARRA (MODO CLARO)
+  Fundo branco, borda inferior e sombra sutil
+*/
 export const Bar = styled.nav`
   position: fixed;
   top: 0;
@@ -12,18 +30,15 @@ export const Bar = styled.nav`
   justify-content: space-between;
   z-index: 1000;
 
-  background: rgba(17, 24, 39, 0.75);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2); 
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  background: ${colors.bg};
+  border-bottom: 1px solid ${colors.border}; 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 `
 
 export const LogoImage = styled.img`
   height: 60px;
   width: auto;
   cursor: pointer;
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
   transition: opacity 0.2s ease;
 
   &:hover {
@@ -37,61 +52,59 @@ export const Actions = styled.div`
   gap: 12px;
 `
 
+/*
+  BOTÕES (MODO CLARO)
+  Estilo "Ghost" (só texto)
+*/
 export const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 8px 16px;
+  padding: 8px 12px; /* Mais elegante */
   border: none;
   border-radius: 8px;
-  font-weight: 600;
+  font-weight: 500; /* Mais fino */
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease;
   font-size: 14px;
+  font-family: 'Inter', sans-serif; /* Incluindo a fonte */
   
-  background: ${props => {
-    if (props.$variant === 'danger') return 'linear-gradient(90deg, #ef4444 0%, #dc2626 100%)';
-    if (props.$variant === 'primary') return 'linear-gradient(90deg, #3b82f6 0%, #2563eb 100%)';
-    return 'transparent';
-  }};
-  
-  color: ${props => (props.$variant === 'danger' || props.$variant === 'primary' ? '#fff' : '#9ca3af')};
-  
-  border: 1px solid ${props => {
-    if (props.$variant === 'danger' || props.$variant === 'primary') return 'transparent';
-    return '#374151';
-  }};
-
-  box-shadow: ${props => (props.$variant === 'danger' || props.$variant === 'primary' ? '0 4px 15px rgba(0, 0, 0, 0.2)' : 'none')};
+  /* Estado Padrão (Default) */
+  background: transparent;
+  color: ${colors.textMuted};
 
   &:hover {
-    background: ${props => {
-      if (props.$variant === 'danger') return 'linear-gradient(90deg, #f87171 0%, #ef4444 100%)';
-      if (props.$variant === 'primary') return 'linear-gradient(90deg, #4f9aff 0%, #3b82f6 100%)';
-      return 'rgba(255, 255, 255, 0.05)';
-    }};
-    
-    color: #fff; 
-    
-    border-color: ${props => {
-      if (props.$variant === 'danger' || props.$variant === 'primary') return 'transparent';
-      return '#4b5563';
-    }};
-
-    transform: translateY(-1px);
-    box-shadow: ${props => (props.$variant === 'danger' || props.$variant === 'primary' ? '0 6px 20px rgba(0, 0, 0, 0.3)' : '0 4px 8px rgba(0, 0, 0, 0.1)')};
+    background: ${colors.bgMuted};
+    color: ${colors.text};
   }
 
-  &:active {
-    transform: translateY(0);
-  }
+  /* Variante Primary */
+  ${props => props.$variant === 'primary' && `
+    color: ${colors.primary};
+    font-weight: 600;
+    
+    &:hover {
+      background: ${colors.primaryBg};
+      color: ${colors.primary};
+    }
+  `}
+
+  /* Variante Danger */
+  ${props => props.$variant === 'danger' && `
+    color: ${colors.danger};
+    
+    &:hover {
+      background: ${colors.dangerBg};
+      color: ${colors.danger};
+    }
+  `}
 `
 
 export const Divider = styled.div`
   height: 24px;
   width: 1px;
-  background: #374151;
+  background: ${colors.border}; /* Cor de borda clara */
   margin: 0 4px;
 `
 
@@ -100,16 +113,19 @@ export const NotifyWrapper = styled.div`
   display: inline-block;
 `
 
+/*
+  DROPDOWN (MODO CLARO)
+*/
 export const DropdownCard = styled.div`
   position: absolute;
   top: calc(100% + 10px);
   right: 0;
   width: 380px;
   border-radius: 12px;
-  background: rgba(17, 24, 39, 0.95);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
-  color: #e5e7eb;
+  background: ${colors.bg};
+  border: 1px solid ${colors.border};
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  color: ${colors.text};
   overflow: hidden;
   z-index: 1100;
 `
@@ -119,26 +135,29 @@ export const ModalHeader = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 16px 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid ${colors.border};
 `
 
 export const ModalTitle = styled.h3`
   margin: 0;
   font-size: 18px;
   font-weight: 700;
-  color: #fff;
+  color: ${colors.text};
 `
 
 export const CloseButton = styled.button`
   background: transparent;
   border: none;
-  color: #9ca3af;
+  color: ${colors.textMuted};
   font-size: 18px;
   cursor: pointer;
   padding: 4px 8px;
   border-radius: 6px;
   transition: all 0.2s ease;
-  &:hover { color: #fff; background: rgba(255, 255, 255, 0.08); }
+  &:hover { 
+    color: ${colors.text}; 
+    background: ${colors.bgMuted};
+  }
 `
 
 export const NotificationsList = styled.div`
@@ -154,11 +173,11 @@ export const NotificationItem = styled.div`
   gap: 10px;
   padding: 12px;
   border-radius: 10px;
-  background: rgba(31, 41, 55, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: ${colors.bgMuted};
+  border: 1px solid ${colors.border};
 `
 
 export const NotificationText = styled.span`
   font-size: 14px;
-  color: #cbd5e1;
+  color: ${colors.textMuted};
 `
