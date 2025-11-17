@@ -100,6 +100,11 @@ export const IconStyleRight = styled.div`
 
 export const Input = styled.input`
   width: 100%;
+  /* ===== AJUSTE PRINCIPAL AQUI ===== */
+  max-width: 500px; /* Define uma largura máxima */
+  align-self: center; /* Centraliza o input dentro do Form */
+  /* ================================== */
+  
   padding: 12px 44px;
   border-radius: 10px;
   border: 1px solid #374151;
@@ -118,6 +123,12 @@ export const InputWrapper = styled.div`
   position: relative;
   display: flex;
   align-items: center;
+  
+  /* ===== AJUSTE PARA CENTRALIZAR O WRAPPER ===== */
+  width: 100%;
+  max-width: 500px;
+  align-self: center;
+  /* ============================================ */
 
   &:focus-within {
     ${Input} {
@@ -132,10 +143,20 @@ export const InputWrapper = styled.div`
       color: #3b82f6;
     }
   }
+  
+  /* Corrige o padding do input quando ele está dentro de um wrapper */
+  ${Input} {
+    padding-left: 44px;
+  }
 `
 
 export const Textarea = styled.textarea`
   width: 100%;
+  /* ===== AJUSTE PRINCIPAL AQUI ===== */
+  max-width: 500px;
+  align-self: center;
+  /* ================================== */
+  
   padding: 12px 14px;
   border-radius: 10px;
   border: 1px solid #374151;
@@ -167,6 +188,13 @@ export const Button = styled.button`
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+  
+  /* ===== AJUSTE PRINCIPAL AQUI ===== */
+  width: 100%;
+  max-width: 500px;
+  align-self: center;
+  /* ================================== */
+
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
@@ -205,4 +233,10 @@ export const ErrorText = styled.p`
   border: 1px solid rgba(239, 68, 68, 0.3);
   padding: 10px;
   border-radius: 8px;
+  
+  /* ===== AJUSTE PRINCIPAL AQUI ===== */
+  width: 100%;
+  max-width: 500px;
+  align-self: center;
+  /* ================================== */
 `
