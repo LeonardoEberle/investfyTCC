@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Bar, LogoImage, Actions, Button, Divider } from './styles'
+import { Bar, LogoImage, Actions, Button, Divider, NotifyWrapper, DropdownCard, ModalHeader, ModalTitle, CloseButton, NotificationsList, NotificationItem, NotificationText } from './styles'
 import { 
   HiOutlineChartPie, 
   HiOutlineBriefcase, 
@@ -14,6 +14,19 @@ import logoAsset from '../../assets/logo.png'
 
 export default function NavBar() {
   const navigate = useNavigate()
+  const [openNotifications, setOpenNotifications] = useState(false)
+  const notifyRef = useRef(null)
+
+  useEffect(() => {
+    if (!openNotifications) return
+    const handler = (e) => {
+      if (notifyRef.current && !notifyRef.current.contains(e.target)) {
+        setOpenNotifications(false)
+      }
+    }
+    document.addEventListener('mousedown', handler)
+    return () => document.removeEventListener('mousedown', handler)
+  }, [openNotifications])
   return (
     <Bar>
       <LogoImage 
@@ -25,37 +38,53 @@ export default function NavBar() {
       <Actions>
         <Button 
           $variant="primary" 
-          onClick={() => alert('Em breve: Minha carteira')} 
-          aria-label="Minha carteira"
+          onClick={() => navigate('/startups')} 
+          aria-label="Startups"
         >
           <HiOutlineChartPie size={18} />
-          Minha carteira
+          Startups
         </Button>
         <Button 
-          onClick={() => alert('Em breve: Meus investimentos')} 
-          aria-label="Meus investimentos"
+          onClick={() => navigate('/minhas-startups')} 
+          aria-label="Minhas startups"
         >
           <HiOutlineBriefcase size={18} />
-          Meus investimentos
+          Minhas startups
         </Button>
         <Button 
-          onClick={() => alert('Em breve: Feed')} 
-          aria-label="Feed"
+          onClick={() => navigate('/home')} 
+          aria-label="Dashboard"
         >
           <HiOutlineRss size={18} />
-          Feed
+          Dashboard
         </Button>
         
         <Divider />
         
-        <Button 
-          onClick={() => alert('Em breve: Notificações')} 
-          aria-label="Notificações"
-          title="Notificações"
-        >
-          <HiOutlineBell size={18} />
-          Notificações
-        </Button>
+        <NotifyWrapper ref={notifyRef}>
+          <Button 
+            onClick={() => setOpenNotifications((v) => !v)} 
+            aria-label="Notificações"
+            title="Notificações"
+          >
+            <HiOutlineBell size={18} />
+            Notificações
+          </Button>
+          {openNotifications && (
+            <DropdownCard role="dialog" aria-modal="true" aria-labelledby="notificacoes-title">
+              <ModalHeader>
+                <ModalTitle id="notificacoes-title">Notificações</ModalTitle>
+                <CloseButton aria-label="Fechar" onClick={() => setOpenNotifications(false)}>×</CloseButton>
+              </ModalHeader>
+              <NotificationsList>
+                <NotificationItem>
+                  <HiOutlineBell size={18} />
+                  <NotificationText>Sua Proposta para startup X foi recusada</NotificationText>
+                </NotificationItem>
+              </NotificationsList>
+            </DropdownCard>
+          )}
+        </NotifyWrapper>
         
         <Button 
           onClick={() => navigate('/profile')}

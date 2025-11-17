@@ -94,3 +94,71 @@ export const Divider = styled.div`
   background: #374151;
   margin: 0 4px;
 `
+
+export const NotifyWrapper = styled.div`
+  position: relative;
+  display: inline-block;
+`
+
+export const DropdownCard = styled.div`
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 380px;
+  border-radius: 12px;
+  background: rgba(17, 24, 39, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  color: #e5e7eb;
+  overflow: hidden;
+  z-index: 1100;
+`
+
+export const ModalHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+`
+
+export const ModalTitle = styled.h3`
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+`
+
+export const CloseButton = styled.button`
+  background: transparent;
+  border: none;
+  color: #9ca3af;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  &:hover { color: #fff; background: rgba(255, 255, 255, 0.08); }
+`
+
+export const NotificationsList = styled.div`
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+`
+
+export const NotificationItem = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 10px;
+  background: rgba(31, 41, 55, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+`
+
+export const NotificationText = styled.span`
+  font-size: 14px;
+  color: #cbd5e1;
+`
