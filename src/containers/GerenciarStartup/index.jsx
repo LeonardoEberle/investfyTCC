@@ -1,6 +1,18 @@
 import React, { useState } from 'react'
-import { PageContainer, PageHeader, PageTitle, PageSubtitle, DetailCard, Row, Label, Value, TagList, Tag, FormCard, VideoBox, DocList, DocItem } from './styles'
-import { Form, Input, Textarea, Button } from '../../components/Auth/AuthStyles'
+
+/* MUDANÇA 1: Importar os estilos do formulário (Form, Input, etc.)
+  do ARQUIVO LOCAL (./styles)
+*/
+import { 
+  PageContainer, PageHeader, PageTitle, PageSubtitle, 
+  DetailCard, Row, Label, Value, TagList, Tag, 
+  FormCard, VideoBox, DocList, DocItem,
+  Form, Input, Textarea, FormButton // <-- NOSSOS NOVOS ESTILOS
+} from './styles'
+
+/* MUDANÇA 2: REMOVER a importação do AuthStyles
+*/
+// import { Form, Input, Textarea, Button } from '../../components/Auth/AuthStyles'
 
 export default function GerenciarStartup() {
   const dados = {
@@ -40,6 +52,8 @@ export default function GerenciarStartup() {
         <PageTitle>{dados.nome}</PageTitle>
         <PageSubtitle>{dados.descricao}</PageSubtitle>
       </PageHeader>
+      
+      {/* Este card agora terá fundo cinza claro */}
       <DetailCard>
         <Row>
           <Label>Categoria</Label>
@@ -60,7 +74,9 @@ export default function GerenciarStartup() {
         </TagList>
       </DetailCard>
 
+      {/* Este card agora terá fundo branco e o formulário centralizado */}
       <FormCard>
+        {/* Este 'Form' agora preenche o FormCard */}
         <Form onSubmit={handleSubmit}>
           <Input name="nome" type="text" placeholder="Nome da startup" value={form.nome} onChange={handleChange} />
           <Textarea name="descricao" placeholder="Descrição" value={form.descricao} onChange={handleChange} />
@@ -86,7 +102,7 @@ export default function GerenciarStartup() {
                 </video>
               )
             ) : (
-              <span>Sem vídeo</span>
+              <span>Arraste um vídeo ou cole a URL</span>
             )}
           </VideoBox>
           <Input type="file" multiple onChange={handleDocsChange} accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx" />
@@ -98,7 +114,11 @@ export default function GerenciarStartup() {
               </DocItem>
             ))}
           </DocList>
-          <Button type="submit">Salvar alterações</Button>
+          
+          {/* MUDANÇA 3: Usar o <FormButton> (que tem o estilo local) 
+            em vez do <Button> antigo.
+          */}
+          <FormButton type="submit">Salvar alterações</FormButton>
         </Form>
       </FormCard>
     </PageContainer>
